@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 //dynamic routes [id/slug]
 const Meeting = ({ params:{id} }: { params: { id: string } }) => {
   const {user, isLoaded} = useUser();
-  const [isSetupComplete, setisSetupComplete] = useState(false);
+  const [isSetupComplete, setIsSetupComplete] = useState(false);
   const {call, isCallLoading} = useGetCallById(id);
 
   if(!isLoaded||isCallLoading) return <Loader/>
@@ -20,7 +20,7 @@ const Meeting = ({ params:{id} }: { params: { id: string } }) => {
     <StreamCall call={call}>
       <StreamTheme>
         {!isSetupComplete? (
-          <MeetingSetup/>
+          <MeetingSetup setIsSetupComplete={setIsSetupComplete}/>
         ):(
           <MeetingRoom/>
         )}
